@@ -30,3 +30,39 @@ async function fetchProductsAsync() {
     handleError(error);
   }
 }
+
+// ==========================================
+// Display the first 5 products on the page
+// ==========================================
+
+function displayProducts(products) {
+  // Select the container div from the DOM
+  const container = document.getElementById('product-container');
+
+  // Loop through only the first 5 products
+  products.slice(0, 5).forEach(function(product) {
+
+    // Create the card div and assign the CSS class
+    const card = document.createElement('div');
+    card.className = 'product-card';
+
+    // Create the product image
+    const img = document.createElement('img');
+    img.src = product.fields.image[0].url;
+    img.alt = product.fields.name;
+
+    // Create the product name
+    const name = document.createElement('h3');
+    name.textContent = product.fields.name;
+
+    // Create the product price (converted from cents to dollars)
+    const price = document.createElement('p');
+    price.textContent = '$' + (product.fields.price / 100).toFixed(2);
+
+    // Append all elements to the card, then card to the container
+    card.appendChild(img);
+    card.appendChild(name);
+    card.appendChild(price);
+    container.appendChild(card);
+  });
+}
