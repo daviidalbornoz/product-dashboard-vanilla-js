@@ -66,3 +66,11 @@ function displayProducts(products) {
     container.appendChild(card);
   });
 }
+
+// ==========================================
+// Reusable error handling function
+// ==========================================
+
+function handleError(error) {
+  console.error('An error occurred: ' + error.message);
+}
